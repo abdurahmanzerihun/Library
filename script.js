@@ -1,4 +1,8 @@
 const bookContainer=document.querySelector('.book-container');
+const dialog=document.querySelector('.dialog');
+const addBook=document.querySelector('#add-book');
+const closeButton=document.querySelector('#close-button');
+
 const myLibrary=[];
 
 function Book(title,author,year,pages,isRead){
@@ -42,6 +46,10 @@ myLibrary.forEach(book=>{
 
 }
 showBook();
+
+addBook.addEventListener('click',()=> dialog.showModal());
+closeButton.addEventListener('click',()=>dialog.close());
+
 
 
 
