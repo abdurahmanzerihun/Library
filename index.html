@@ -8,9 +8,28 @@
 </head>
 <body>
 <h2>Book Collections</h2>
-<button id="create-book">Add book</button>
+<button id="add-book">Add book</button>
 <div class="book-container">
 </div>
+<dialog class="dialog">
+       <h3>Add Books</h3>
+       <form action="">
+        <label for="">Title</label>
+        <input type="text">
+        <label for="">Author</label>
+        <input type="text">
+        <label for="">Year</label>
+        <input type="number">
+        <label for="">Pages</label>
+        <input type="number">
+        <label for="">Have you read the book?</label>
+        <label for="">Yes</label>
+        <input type="radio" name="isRead">
+        <label for="">No</label>
+        <input type="radio" name="isRead">
+       </form>
+       <button id="close-button">Close</button>
+</dialog>
          <script src="script.js"></script>
 </body>
 </html>
