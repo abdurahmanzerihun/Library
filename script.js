@@ -2,6 +2,8 @@ const bookContainer=document.querySelector('.book-container');
 const dialog=document.querySelector('.dialog');
 const addBook=document.querySelector('#add-book');
 const closeButton=document.querySelector('#close-button');
+const bookForm=document.querySelector('#bookForm')
+
 
 const myLibrary=[];
 
@@ -18,11 +20,31 @@ function addBookToLibrary(title,author,year,pages,isRead){
       let newBook=new Book(title,author,year,pages,isRead) ;
       myLibrary.push(newBook);
 }
-addBookToLibrary('trial1','hdb',1933,233,'Not read');
-addBookToLibrary('trial2','dhfbds',2003,122,'Read');
-addBookToLibrary('trial3','ddddddbds',2013,122,'Read');
+
+addBook.addEventListener('click',()=> dialog.showModal());
+closeButton.addEventListener('click',()=>dialog.close());
+
+bookForm.addEventListener('submit',function(event){
+     event.preventDefault();
+const titleInpt=document.querySelector('#title').value;
+const authorInpt=document.querySelector('#author').value;  
+const yearInpt=document.querySelector('#year').value; 
+const pagesInpt=document.querySelector('#pages').value; 
+const isReadInpt=document.querySelector('input[name="isRead"]:checked')?.value || ''; 
+     console.log(titleInpt,authorInpt,yearInpt,pagesInpt,isReadInpt);
+ 
+addBookToLibrary(titleInpt,authorInpt,yearInpt,pagesInpt,isReadInpt);
+showBook();
+dialog.close();
+});
+console.log(myLibrary.length);
+
+ addBookToLibrary('trial1','hdb',1933,233,'Not read');
+ addBookToLibrary('trial2','dhfbds',2003,122,'Read');
+ addBookToLibrary('trial3','ddddddbds',2013,122,'Read');
 function showBook(){
-myLibrary.forEach(book=>{
+        bookContainer.innerHTML=" ";//To clear the previous books and add only the last one
+        myLibrary.forEach(book=>{
         const bookCard=document.createElement('div');
         bookCard.classList.add('book-card');
         const bookTitle=document.createElement('h3');
@@ -45,10 +67,14 @@ myLibrary.forEach(book=>{
 })
 
 }
+
+
 showBook();
 
-addBook.addEventListener('click',()=> dialog.showModal());
-closeButton.addEventListener('click',()=>dialog.close());
+
+
+
+
 
 
 
