@@ -41,7 +41,16 @@ console.log(myLibrary.length);
 
  addBookToLibrary('trial1','hdb',1933,233,'Not read');
  addBookToLibrary('trial2','dhfbds',2003,122,'Read');
- addBookToLibrary('trial3','ddddddbds',2013,122,'Read');
+ addBookToLibrary('trial3','ddddddbds',2013,122,'Read'); 
+ 
+ function removeBook(id){
+                const index=myLibrary.findIndex(book=>book.id===id);
+                if(index!==-1){
+                        myLibrary.splice(index,1);//remove from [index] only one element 
+                }
+                console.log(myLibrary);
+                showBook();
+        }
 function showBook(){
         bookContainer.innerHTML=" ";//To clear the previous books and add only the last one
         myLibrary.forEach(book=>{
@@ -57,17 +66,28 @@ function showBook(){
         bookPages.textContent=`Pages:${book.pages}`;
         const bookIsRead=document.createElement('button');
         bookIsRead.textContent=book.isRead;
+
+        bookCard.dataset.id=book.id;          //assign the the book id as data attribute to each book object card
+        const removeBtn=document.createElement('button');
+        removeBtn.textContent="Remove";
+
+        removeBtn.addEventListener('click',()=>{
+                const bookId=bookCard.dataset.id;
+                bookCard.remove();//remove the card from the view
+                removeBook(bookId);//remove the object from the array
+        })
+     
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookYear);
         bookCard.appendChild(bookPages);
         bookCard.appendChild(bookIsRead);
+        bookCard.appendChild(removeBtn);
         bookContainer.appendChild(bookCard);
        
 })
 
 }
-
 
 showBook();
 
