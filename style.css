@@ -28,11 +28,27 @@ html,body{
         margin-left:10px ;
 }
 #add-book>button{
-        background-color: rgba(45, 200, 6, 0.999);
+        background-color: rgba(30, 141, 2, 0.999);
         color:azure;
         border-style: none;
         padding: 10px 15px 10px 15px;
         border-radius: 5px;
+}
+.input-container{
+        margin: 10px;
+}
+#close-button{
+        display: flex;
+        margin-left:auto ;
+        border-style: none;
+        background-color:brown;
+        border-radius: 6px;
+        color:antiquewhite;
+}
+.dialog{
+        border-style: none;
+        border-radius: 15px;
+        box-shadow: 4px 4px 8px rgb(0,0,0,0.3);
 }
 
 
