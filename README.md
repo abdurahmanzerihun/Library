@@ -1,6 +1,6 @@
 # Library
 
-A project for The Odin Project (TOP) built using core JavaScript concepts.
+A project at The Odin Project (TOP) built using core JavaScript concepts.
 
 ## Concepts Covered
 
