@@ -15,6 +15,7 @@ this.pages=pages,
 this.isRead=isRead,
 this.id=crypto.randomUUID()
 }
+
 Book.prototype.readStatus=function(bookIsRead){
 bookIsRead.addEventListener('click',()=>{
        
@@ -22,21 +23,27 @@ bookIsRead.addEventListener('click',()=>{
               
                 this.isRead=!this.isRead;
                 bookIsRead.textContent='Not read';
+                bookIsRead.style.backgroundColor="#6c757d";
         }
         else{
                 this.isRead=!this.isRead;
                 bookIsRead.textContent='Read';
+                bookIsRead.style.backgroundColor="purple";
         }
 });
 
 }
+// function for creating and adding book objects in to the array
 function addBookToLibrary(title,author,year,pages,isRead){
       let newBook=new Book(title,author,year,pages,isRead) ;
       myLibrary.push(newBook);
 }
+
+//event for dialog box
 addBook.addEventListener('click',()=> dialog.showModal());
 closeButton.addEventListener('click',()=>dialog.close());
 
+//event for form
 bookForm.addEventListener('submit',function(event){
      event.preventDefault();
 const titleInpt=document.querySelector('#title').value;
@@ -44,16 +51,14 @@ const authorInpt=document.querySelector('#author').value;
 const yearInpt=document.querySelector('#year').value; 
 const pagesInpt=document.querySelector('#pages').value; 
 const isReadInpt=document.querySelector('#isRead').checked; 
-     console.log(titleInpt,authorInpt,yearInpt,pagesInpt,isReadInpt);
- 
+
 addBookToLibrary(titleInpt,authorInpt,yearInpt,pagesInpt,isReadInpt);
 showBook();
 dialog.close();
-});
-console.log(myLibrary.length);
 
- 
- function removeBook(id){
+});
+// remove books from the array
+function removeBook(id){
                 const index=myLibrary.findIndex(book=>book.id===id);
                 if(index!==-1){
                         myLibrary.splice(index,1);//remove from [index] only one element(1) 
@@ -61,6 +66,7 @@ console.log(myLibrary.length);
                 console.log(myLibrary);
                 showBook();
         }
+//show books on the page
 function showBook(){
         bookContainer.innerHTML=" ";//To clear the previous books and add only the last one
         myLibrary.forEach(book=>{
@@ -80,7 +86,14 @@ function showBook(){
 
         bookCard.dataset.id=book.id;          //assign the the book id as data attribute to each book object card
         const removeBtn=document.createElement('button');
+        removeBtn.classList.add('remove-button');
         removeBtn.textContent="Remove";
+        if(book.isRead){
+                bookIsRead.style.backgroundColor="purple";
+        }
+        else{
+                bookIsRead.style.backgroundColor="#6c757d";
+        }
 
         removeBtn.addEventListener('click',()=>{
                 const bookId=bookCard.dataset.id;
@@ -90,6 +103,7 @@ function showBook(){
         })
 
      book.readStatus(bookIsRead);//Call for the toggle
+     
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookYear);
