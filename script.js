@@ -103,8 +103,8 @@ function showBook(){
 }
 
 //Default values
-addBookToLibrary('trial2','dhfbds',2003,122,'Read');
-addBookToLibrary('trial3','ddddddbds',2013,122,'Read'); 
+addBookToLibrary('To kill a Mockingbird','Harper Lee',1960,281,'Read');
+addBookToLibrary('The Great Gatsby','F. Scott Fitzgerald',1925,180,'Read'); 
 
 //Call to show all books in the array
 showBook();
