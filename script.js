@@ -15,12 +15,25 @@ this.pages=pages,
 this.isRead=isRead,
 this.id=crypto.randomUUID()
 }
+Book.prototype.readStatus=function(bookIsRead){
+bookIsRead.addEventListener('click',()=>{
+       
+        if(this.isRead){
+              
+                this.isRead=!this.isRead;
+                bookIsRead.textContent='Not read';
+        }
+        else{
+                this.isRead=!this.isRead;
+                bookIsRead.textContent='Read';
+        }
+});
 
+}
 function addBookToLibrary(title,author,year,pages,isRead){
       let newBook=new Book(title,author,year,pages,isRead) ;
       myLibrary.push(newBook);
 }
-
 addBook.addEventListener('click',()=> dialog.showModal());
 closeButton.addEventListener('click',()=>dialog.close());
 
@@ -30,7 +43,7 @@ const titleInpt=document.querySelector('#title').value;
 const authorInpt=document.querySelector('#author').value;  
 const yearInpt=document.querySelector('#year').value; 
 const pagesInpt=document.querySelector('#pages').value; 
-const isReadInpt=document.querySelector('input[name="isRead"]:checked')?.value || ''; 
+const isReadInpt=document.querySelector('#isRead').checked; 
      console.log(titleInpt,authorInpt,yearInpt,pagesInpt,isReadInpt);
  
 addBookToLibrary(titleInpt,authorInpt,yearInpt,pagesInpt,isReadInpt);
@@ -39,14 +52,11 @@ dialog.close();
 });
 console.log(myLibrary.length);
 
- addBookToLibrary('trial1','hdb',1933,233,'Not read');
- addBookToLibrary('trial2','dhfbds',2003,122,'Read');
- addBookToLibrary('trial3','ddddddbds',2013,122,'Read'); 
  
  function removeBook(id){
                 const index=myLibrary.findIndex(book=>book.id===id);
                 if(index!==-1){
-                        myLibrary.splice(index,1);//remove from [index] only one element 
+                        myLibrary.splice(index,1);//remove from [index] only one element(1) 
                 }
                 console.log(myLibrary);
                 showBook();
@@ -65,7 +75,8 @@ function showBook(){
         const bookPages=document.createElement('p');
         bookPages.textContent=`Pages:${book.pages}`;
         const bookIsRead=document.createElement('button');
-        bookIsRead.textContent=book.isRead;
+        bookIsRead.classList.add('book-read-status');
+        bookIsRead.textContent=book.isRead?"Read":"Not read";
 
         bookCard.dataset.id=book.id;          //assign the the book id as data attribute to each book object card
         const removeBtn=document.createElement('button');
@@ -75,8 +86,10 @@ function showBook(){
                 const bookId=bookCard.dataset.id;
                 bookCard.remove();//remove the card from the view
                 removeBook(bookId);//remove the object from the array
+
         })
-     
+
+     book.readStatus(bookIsRead);//Call for the toggle
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookYear);
@@ -89,13 +102,15 @@ function showBook(){
 
 }
 
+//Default values
+addBookToLibrary('trial2','dhfbds',2003,122,'Read');
+addBookToLibrary('trial3','ddddddbds',2013,122,'Read'); 
+
+//Call to show all books in the array
 showBook();
 
 
-
-
-
-
+ 
 
 
 
