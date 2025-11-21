@@ -6,7 +6,8 @@ const bookForm = document.querySelector('#bookForm');
 
 const myLibrary = [];
 
-function Book(title, author, year, pages, isRead) {
+class Book{
+constructor(title, author, year, pages, isRead) {
     this.title = title,
     this.author = author,
     this.year = year,
@@ -14,6 +15,7 @@ function Book(title, author, year, pages, isRead) {
     this.isRead = isRead,
     this.id = crypto.randomUUID();
 }
+} 
 
 Book.prototype.readStatus = function (bookIsRead) {
     bookIsRead.addEventListener('click', () => {
