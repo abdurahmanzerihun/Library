@@ -43,16 +43,38 @@ closeButton.addEventListener('click', () => dialog.close());
 
 // event for form
 bookForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const titleInpt = document.querySelector('#title').value;
-    const authorInpt = document.querySelector('#author').value;
-    const yearInpt = document.querySelector('#year').value;
-    const pagesInpt = document.querySelector('#pages').value;
+  event.preventDefault(); 
+  
+  const titleInpt = document.querySelector('#title');
+    const authorInpt = document.querySelector('#author');
+    const yearInpt = document.querySelector('#year');
+    const pagesInpt = document.querySelector('#pages');
     const isReadInpt = document.querySelector('#isRead').checked;
+    //Custom Validation
+ if(titleInpt.validity.valueMissing){
+        document.getElementById('error').textContent="Please fill out the title field";
+        return;
+    }
+    else if (authorInpt.validity.valueMissing){
+        document.getElementById('error').textContent="Please fill out the author field";
+        return;
 
-    addBookToLibrary(titleInpt, authorInpt, yearInpt, pagesInpt, isReadInpt);
+    }
+    else if (yearInpt.validity.valueMissing){
+        document.getElementById('error').textContent="Please fill out the year field";
+        return;
+
+    }
+    else if (pagesInpt.validity.valueMissing){
+        document.getElementById('error').textContent="Please fill out the page field";
+        return;
+
+    }
+    
+
+    addBookToLibrary(titleInpt.value, authorInpt.value, yearInpt.value, pagesInpt.value, isReadInpt.value);
     showBook();
+    
     dialog.close();
 });
 
@@ -125,3 +147,4 @@ addBookToLibrary('The Great Gatsby', 'F. Scott Fitzgerald', 1925, 180, 'Read');
 
 // Call to show all books in the array
 showBook();
+

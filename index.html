@@ -19,24 +19,25 @@
     <dialog class="dialog">
         <button id="close-button">x</button>
         <h3>Add Book</h3>
-        <form id="bookForm">
+        <form id="bookForm" novalidate>
+            <p id="error"></p>
             <div class="input-container">
-                <label for="title">Title</label>
+                <label for="title">Title <span>*</span></label>
                 <input type="text" id="title" required>
             </div>
 
             <div class="input-container">
-                <label for="author">Author</label>
+                <label for="author">Author <span>*</span></label>
                 <input type="text" id="author" required>
             </div>
 
             <div class="input-container">
-                <label for="year">Year</label>
+                <label for="year">Year <span>*</span></label>
                 <input type="number" id="year" min="1000" max="3000" required>
             </div>
 
             <div class="input-container">
-                <label for="pages">Pages</label>
+                <label for="pages">Pages <span>*</span></label>
                 <input type="number" id="pages" min="1" required>
             </div>
 
